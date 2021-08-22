@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -52,6 +53,10 @@ public class ramController {
     public Optional<Ram> findById(int id){
         return ramService.findById(id);
     }
+
+    @RequestMapping("/rams/getSorted")
+    @ResponseBody
+    public List<Ram> getSorted(){ return ramService.getRamSorted();}
 
     @RequestMapping(value = "/rams/update", method = {RequestMethod.PUT, RequestMethod.GET})
     public String update(Ram ram){

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -24,7 +26,7 @@ public class cpuController {
 
     @GetMapping("/cpus")
     public String getcpus(Model model){
-        model.addAttribute("cpus", cpuService.getCpu());
+        model.addAttribute("cpus", cpuService.getCpuSorted());
         model.addAttribute("sockets", socketService.getSocket());
         model.addAttribute("brands", brandService.getBrand());
 

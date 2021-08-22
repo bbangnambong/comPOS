@@ -7,9 +7,10 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>DASHGUM - Bootstrap Admin Template</title>
+    <title>조립</title>
 
     <!-- Bootstrap core CSS -->
+<!--      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <!--external css-->
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -17,7 +18,6 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
-
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -37,7 +37,7 @@
               <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
           </div>
           <!--logo start-->
-          <a th:href="@{/index}" class="logo"><b>컴팔이 0.3(pre-alpha)</b></a>
+          <a th:href="@{/index}" class="logo"><b>컴팔이 0.4(alpha)</b></a>
           <!--logo end-->
           <!--            <div class="nav notify-row" id="top_menu">-->
           <!--                &lt;!&ndash;  notification start &ndash;&gt;-->
@@ -250,14 +250,63 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i> Blank Page</h3>
-          	<div class="row mt">
-          		<div class="col-lg-12">
-          		<p>Place your content here.</p>
-          		</div>
-          	</div>
-			
-		</section><! --/wrapper -->
+              <h3><i class="fa fa-angle-right"></i>컴퓨터 조립</h3>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cpuModal">CPU 선택</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#motherboardModal">메인보드 선택</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ramModal">RAM 선택</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#vgaModal">그래픽카드 선택</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ssdhddModal">SSD/HDD 선택</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#powerModal">파워 선택</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#accessoryModal">주변기기 선택</button>
+              <a th:href="@{/assembles/emptycart}" class="btn btn-warning">장바구니 비우기</a>
+              <br>
+              <h4>장바구니</h4>
+              <form class="group-inline">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th>이름</th>
+                              <th>가격</th>
+                              <th>Actions</th>
+                          </tr>
+                      </thead>
+
+                      <tbody>
+                          <tr th:each="cartCpu:${cartedCpus}">
+                              <td th:text="${cartCpu.name}"></td>
+                              <td th:text="${cartCpu.price}"></td>
+                          </tr>
+                          <tr th:each="cartedMotherboard:${cartedMotherboards}">
+                              <td th:text="${cartedMotherboard.name}"></td>
+                              <td th:text="${cartedMotherboard.price}"></td>
+                          </tr>
+                          <tr th:each="cartedRam:${cartedRams}">
+                              <td th:text="${cartedRam.name}"></td>
+                              <td th:text="${cartedRam.price}"></td>
+                          </tr>
+                          <tr th:each="cartedVga:${cartedVgas}">
+                              <td th:text="${cartedVga.name}"></td>
+                              <td th:text="${cartedVga.price}"></td>
+                          </tr>
+                          <tr th:each="cartedSsdhdd:${cartedSsdhdds}">
+                              <td th:text="${cartedSsdhdd.name}"></td>
+                              <td th:text="${cartedSsdhdd.price}"></td>
+                          </tr>
+                          <tr th:each="cartedPower:${cartedPowers}">
+                              <td th:text="${cartedPower.name}"></td>
+                              <td th:text="${cartedPower.price}"></td>
+                          </tr>
+                          <tr th:each="cartedAccessory:${cartedAccessories}">
+                              <td th:text="${cartedAccessory.name}"></td>
+                              <td th:text="${cartedAccessory.price}"></td>
+                          </tr>
+                          <tr>
+                              총 가격:
+                          </tr>
+                      </tbody>
+                  </table>
+              </form>
+		</section><!--/wrapper -->
       </section><!-- /MAIN CONTENT -->
 
       <!--main content end-->
@@ -272,7 +321,281 @@
       </footer>
       <!--footer end-->
   </section>
-
+      <div class="modal fade" id="cpuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">CPU 선택</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>소켓</th>
+                                  <th>이름</th>
+                                  <th>가격</th>
+                                  <th>Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr th:each="cpu:${cpus}">
+                                  <td th:text="${cpu.socket.name}"></td>
+                                  <td th:text="${cpu.name}"></td>
+                                  <td th:text="${cpu.price}"></td>
+                                  <td>
+                                      <div class="btn-group">
+                                          <a th:href="@{/assembles/addcpu/(id=${cpu.id})}" class="btn btn-primary"><i class="fa fa-check"></i></a>
+                                      </div>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal fade" id="motherboardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">메인보드 선택</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>칩셋</th>
+                                  <th>이름</th>
+                                  <th>가격</th>
+                                  <th>Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr th:each="motherboard:${motherboards}">
+                                  <td th:text="${motherboard.chipset.name}"></td>
+                                  <td th:text="${motherboard.name}"></td>
+                                  <td th:text="${motherboard.price}"></td>
+                                  <td>
+                                      <div class="btn-group">
+                                          <a th:href="@{/assembles/addmotherboard/(id=${motherboard.id})}" class="btn btn-primary"><i class="fa fa-check"></i></a>
+                                      </div>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal fade" id="ramModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">RAM 선택</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>DDR 버전</th>
+                                  <th>이름</th>
+                                  <th>가격</th>
+                                  <th>Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr th:each="ram:${rams}">
+                                  <td th:text="${ram.ddr.name}"></td>
+                                  <td th:text="${ram.name}"></td>
+                                  <td th:text="${ram.price}"></td>
+                                  <td>
+                                      <div class="btn-group">
+                                          <a th:href="@{/assembles/addram/(id=${ram.id})}" class="btn btn-primary"><i class="fa fa-check"></i></a>
+                                      </div>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal fade" id="vgaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">그래픽카드 선택</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>칩셋</th>
+                                  <th>이름</th>
+                                  <th>가격</th>
+                                  <th>Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr th:each="vga:${vgas}">
+                                  <td th:text="${vga.vgaChipset.name}"></td>
+                                  <td th:text="${vga.name}"></td>
+                                  <td th:text="${vga.price}"></td>
+                                  <td>
+                                      <div class="btn-group">
+                                          <a th:href="@{/assembles/addvga/(id=${vga.id})}" class="btn btn-primary"><i class="fa fa-check"></i></a>
+                                      </div>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal fade" id="ssdhddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">SSD/HDD 선택</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>유형</th>
+                                  <th>용량</th>
+                                  <th>이름</th>
+                                  <th>가격</th>
+                                  <th>Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr th:each="ssdhdd:${ssdhdds}">
+                                  <td th:text="${ssdhdd.format.name}"></td>
+                                  <td th:text="${ssdhdd.ssdVol.name}"></td>
+                                  <td th:text="${ssdhdd.name}"></td>
+                                  <td th:text="${ssdhdd.price}"></td>
+                                  <td>
+                                      <div class="btn-group">
+                                          <a th:href="@{/assembles/addssdhdd/(id=${ssdhdd.id})}" class="btn btn-primary"><i class="fa fa-check"></i></a>
+                                      </div>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal fade" id="powerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">파워 선택</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>용향</th>
+                                  <th>이름</th>
+                                  <th>가격</th>
+                                  <th>Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr th:each="power:${powers}">
+                                  <td th:text="${power.watt}"></td>
+                                  <td th:text="${power.name}"></td>
+                                  <td th:text="${power.price}"></td>
+                                  <td>
+                                      <div class="btn-group">
+                                          <a th:href="@{/assembles/addpower/(id=${power.id})}" class="btn btn-primary"><i class="fa fa-check"></i></a>
+                                      </div>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal fade" id="accessoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">주변기기 선택</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>유형</th>
+                                  <th>이름</th>
+                                  <th>가격</th>
+                                  <th>Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr th:each="accessory:${accessories}">
+                                  <td th:text="${accessory.sort}"></td>
+                                  <td th:text="${accessory.name}"></td>
+                                  <td th:text="${accessory.price}"></td>
+                                  <td>
+                                      <div class="btn-group">
+                                          <a th:href="@{/assembles/addaccessory/(id=${accessory.id})}" class="btn btn-primary"><i class="fa fa-check"></i></a>
+                                      </div>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                  </div>
+              </div>
+          </div>
+      </div>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/assets/js/jquery.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
@@ -285,6 +608,7 @@
 
     <!--common script for all pages-->
     <script src="/assets/js/common-scripts.js"></script>
+      <script src="/assets/js/assemble.js"></script>
 
     <!--script for this page-->
     

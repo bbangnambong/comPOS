@@ -3,6 +3,7 @@ package com.nambong.compos.service;
 import com.nambong.compos.model.Ssdhdd;
 import com.nambong.compos.repository.SsdhddRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,10 @@ public class SsdhddService {
 
     public List<Ssdhdd> getSsdhdd(){
         return ssdhddRepository.findAll();
+    }
+
+    public List<Ssdhdd> getSsdhddSorted(){
+        return ssdhddRepository.findAll(Sort.by(Sort.Direction.DESC, "price"));
     }
 
     public void save(Ssdhdd ssdhdd){

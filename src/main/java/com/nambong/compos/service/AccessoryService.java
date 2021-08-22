@@ -3,6 +3,7 @@ package com.nambong.compos.service;
 import com.nambong.compos.model.Accessory;
 import com.nambong.compos.repository.AccessoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,10 @@ public class AccessoryService {
 
     public List<Accessory> getAccessories(){
         return accessoryRepository.findAll();
+    }
+
+    public List<Accessory> getAccessoriesSorted(){
+        return accessoryRepository.findAll(Sort.by(Sort.Direction.DESC, "sort","price"));
     }
 
     public void save(Accessory accessory){

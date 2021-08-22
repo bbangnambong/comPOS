@@ -37,7 +37,7 @@
               <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
           </div>
           <!--logo start-->
-          <a th:href="@{/index}" class="logo"><b>컴팔이 0.3(pre-alpha)</b></a>
+          <a th:href="@{/index}" class="logo"><b>컴팔이 0.4(alpha)</b></a>
           <!--logo end-->
           <!--            <div class="nav notify-row" id="top_menu">-->
           <!--                &lt;!&ndash;  notification start &ndash;&gt;-->
@@ -269,9 +269,9 @@
                           <td th:text="${accessory.price}"></td>
                           <td>
                               <div class="btn-group">
-                                  <a th:href="@{/accessories/findById/(id=${accessory.id})}" class="btn btn-primary" id="editButton"><i class="icon_pencil-edit"></i></a>
-                                  <a th:href="@{/accessories/findById/(id=${accessory.id})}" class="btn btn-success" id="detailsButton"><i class="icon_document_alt"></i></a>
-                                  <a th:href="@{/accessories/delete/(id=${accessory.id})}" class="btn btn-danger" id="deleteButton"><i class="icon_close_alt2"></i></a>
+                                  <a th:href="@{/accessories/findById/(id=${accessory.id})}" class="btn btn-primary" id="editButton"><i class="fa fa-pencil"></i></a>
+<!--                                  <a th:href="@{/accessories/findById/(id=${accessory.id})}" class="btn btn-success" id="detailsButton"><i class="fa fa-book"></i></a>-->
+                                  <a th:href="@{/accessories/delete/(id=${accessory.id})}" class="btn btn-danger" id="deleteButton"><i class="fa fa-times"></i></a>
                               </div>
                           </td>
                       </tr>
